@@ -1,0 +1,78 @@
+{% load webdesign %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>Contacts</h1>
+        <p>Below you can see a list of registered persons.</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {% if personsList %}
+              <table border=1>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>    
+                  </tr>
+                  {% for person in personsList %}
+                  <tr>
+                    <td>
+                        {{ person.username }}
+                    </td>
+                    <td>
+                        {{ person.email }}
+                    </td>      
+                  </tr>
+                  {% endfor %}    
+              </table>
+
+          {% else %}
+              <p>No persons found.</p>
+          {% endif %}
+        </div>
+        <div class="col-md-6">
+
+            {% if personsListResult %}
+
+                <h2>Results: </h2>
+                <table border=1>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>    
+                  </tr>
+                  {% for person in personsListResult %}
+                  <tr>
+                    <td>
+                        {{ person.username }}
+                    </td>
+                    <td>
+                        {{ person.email }}
+                    </td>      
+                  </tr>
+                  {% endfor %}    
+              </table>
+
+            {% elif message %}
+
+                {{ message | safe  }}
+
+            {% else %}
+
+              <h2>Search Person</h2>
+              <form action="/persons/search/" method="get">
+                  <input type="text" name="q">
+                  <input type="submit" value="Search">
+              </form>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<footer>
+    <div class="container">
+        <p>&copy; Your Company {% now 'Y' %}</p>
+    </div>
+</footer>

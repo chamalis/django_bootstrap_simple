@@ -1,0 +1,7 @@
+<form method="post" action="/persons/add/">
+{% csrf_token %}<!-- cross-site request forgery -->
+<ul>
+    {{ form.as_p }}
+</ul>
+<input type="submit" value="Submit Form"/>
+</form>
